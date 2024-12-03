@@ -1,0 +1,53 @@
+[tool.poetry]
+name = "demo-langgraph"
+version = "0.1.0"
+description = ""
+authors = ["sakkarin.nui <snlangsuan@gmail.com>"]
+readme = "README.md"
+packages = [{include = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+black = "^24.10.0"
+ruff = "^0.8.1"
+pytest = "^8.3.4"
+pre-commit = "^4.0.1"
+langgraph = "^0.2.53"
+langchain-core = "^0.3.21"
+langchain-openai = "^0.2.10"
+langchain-community = "^0.3.9"
+tavily-python = "^0.5.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+skip-string-normalization = true
+line-length = 120
+
+[tool.ruff]
+# Same as Black.
+line-length = 120
+
+exclude = ["jupyter_notebook_config.py"]
+select = [
+    "E",  # pycodestyle errors (settings from FastAPI, thanks, @tiangolo!)
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "C",  # flake8-comprehensions
+    "B",  # flake8-bugbear
+]
+ignore = [
+    "E501",  # line too long, handled by black
+    "C901",  # too complex
+]
+
+[tool.ruff.isort]
+order-by-type = true
+relative-imports-order = "closest-to-furthest"
+extra-standard-library = ["typing"]
+section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
+known-first-party = []
